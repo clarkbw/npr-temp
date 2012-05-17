@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html manifest="manifest.appcache">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="css/app.css" rel="stylesheet">
+</head>
+<body>
+    <div class="navbar navbar-fixed-top">
+        <div class="navbar-inner">
+            <div class="container">
+
+                <a class="brand" href="#">NPR</a>
+
+                <ul class="nav pull-right">
+                    <li class="dropdown">
+                        <span class="networkStatus label"></span>
+                        <button class="webapp-install btn btn-primary"
+                                style="display: none;">Install</button>
+                   </li>
+                </ul>
+             </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div id="app">
+            <ul class="unstyled" id="story-list"></ul>
+        </div>
+
+        <div>
+            <div style="display: none;" class="webapp-error alert alert-block">
+                <a class="close" data-dismiss="alert">×</a>
+                <h4 class="alert-heading">Install error</h4>
+                <span class="webapp-error-details"></span>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="span4">
+                <h2>Network Status</h2>
+                <p>
+                    
+                </p>
+            </div>
+
+            <div class="span4">
+                <h2>AppCache Status</h2>
+
+                <p>
+                    <span class="appCacheStatus label">n/a</span>
+                </p>
+
+                <p>
+                    <div class="updateAlert well" style="display: none;">
+                        <p>There is an application update. Update now?</p>
+                        <button class="updateButton btn btn-primary">Update</button>
+                    </div>
+                </p>
+
+                <p>
+                    <button class="checkUpdate btn btn-primary"
+                            style="display: none;">Check for Update</button>
+                </p>
+
+                <div class="eventSection" style="display: none;">
+                    <p>appCache events fired (most recent first):</p>
+                    <div class="appCacheEvent"></div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <script async data-main="js/app" src="js/app.js" charset="utf-8"></script>
+    <script type="text/template" id="story-template">
+        <a href="#story/<%= id %>" class="story">
+          <%if (typeof(thumbnail) != "undefined") { %>
+          <img style="float:left;" src="<%= thumbnail.medium.$text %>" />
+          <% } %>
+          <p><%= slug.$text %></p>
+          <h3 class="movie-title"><%= title.$text %></h3>
+          <p class="movie-summary"><%= teaser.$text %></p>
+        </a>
+    </script>
+</body>
+</html>
